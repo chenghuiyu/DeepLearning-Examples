@@ -3,6 +3,7 @@ import numpy as np
 class ManualGradient:
 
     def __init__(self, x_data, y_data, weight, alpha=0.01):
+        """
         if not isinstance(x_data, np.ndarray):
             try:
                 x_data = np.array(x_data)
@@ -13,6 +14,7 @@ class ManualGradient:
                 y_data = np.array(y_data)
             except:
                 raise Exception("training labels must be array")
+        """
 
         self.x_data = x_data
         self.y_data = y_data
@@ -34,13 +36,12 @@ class ManualGradient:
 
         return gradient_result
 
-    def predict(self):
-        w = 0.0
+    def predict(self, weight):
         for x, y in zip(self.x_data, self.y_data):
-            w_gradient = self._gradient(self.weight, x ,y)
-            w = w - self.alpha * w_gradient
-            loss = self._loss(w, x, y)
-        return loss, w
+            w_gradient = self._gradient(weight, x ,y)
+            weight = weight - self.alpha * w_gradient
+            loss = self._loss(weight, x, y)
+        return loss, weight
 
 
 
