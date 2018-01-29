@@ -37,6 +37,11 @@ class ManualGradient:
         return gradient_result
 
     def predict(self, weight):
+        """
+        对模型进行预测
+        :param weight:
+        :return:
+        """
         for x, y in zip(self.x_data, self.y_data):
             w_gradient = self._gradient(weight, x ,y)
             weight = weight - self.alpha * w_gradient
